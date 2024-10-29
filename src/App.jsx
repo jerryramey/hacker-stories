@@ -38,32 +38,51 @@ function App() {
 
           <h1>{getTitle('React')}</h1>
 
-          <label htmlFor="search">Search: </label>
-          <input id="search" type="text"/>
+         <Search />
 
           <hr/>
 
 
           <ul>
               {list.map(function (item, index) {
-                  {/* Only use array indexes as a last resort for key identifiers */}
+                  {/* Only use array indexes as a last resort for key identifiers */
+                  }
                   return <li key={index}>{item.title}</li>;
               })}
           </ul>
 
-          <ul>
-              {list.map(function (item) {
-                  return <li key={item.objectID}>
-                    <span><a href={item.url} target="_blank">{item.title}</a> </span>
-                      <span> {item.author}</span>
-                      <span> {item.num_comments}</span>
-                      <span> {item.points}</span>
-                  </li>;
-              })}
-          </ul>
+          <h3>React Component</h3>
+          <List/>
+
+
       </div>
   );
 
+}
+
+function Search() {
+    return(
+        <div>
+            <label htmlFor="search">Search: </label>
+            <input id="search" type="text"/>
+        </div>
+    );
+}
+
+function List() {
+    return (
+
+        <ul>
+            {list.map(function (item) {
+                return <li key={item.objectID}>
+                    <span><a href={item.url} target="_blank">{item.title}</a> </span>
+                    <span> {item.author}</span>
+                    <span> {item.num_comments}</span>
+                    <span> {item.points}</span>
+                </li>;
+            })}
+        </ul>
+    );
 }
 
 export default App
