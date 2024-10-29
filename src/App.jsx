@@ -61,10 +61,18 @@ const App = () => {
 }
 
 const Search = () => {
+    const handleChange = (event) => {
+        //synthetic event
+        console.log(event);
+
+        //value of target
+        console.log(event.target.value);
+    }
+
     return(
         <div>
             <label htmlFor="search">Search: </label>
-            <input id="search" type="text"/>
+            <input id="search" type="text" onInput={handleChange}/>
         </div>
     );
 }
