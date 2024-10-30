@@ -17,7 +17,8 @@ function getTitle(title) {
 
 const App = () => {
 
-    const stories = [{
+    const stories = [
+        {
         title: 'React',
         url: 'https://reactjs.org/',
         author: 'Jordan Walke',
@@ -35,27 +36,28 @@ const App = () => {
         },
     ]
 
+    const handleSearch = (event) => {
+      console.log(event.target.value);
+    };
+
   return (
       <div>
           <h1>{welcome.greeting} {welcome.title}</h1>
-
-         <Search />
-
+         <Search onSearch={handleSearch} />
           <hr/>
-
           <List list={stories}/>
-
-
       </div>
   );
 
 }
 
-const Search = () => {
+const Search = (props) => {
     const [searchTerm, setSearchTerm] = React.useState('User has not supplied a search term');
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
+
+        props.onSearch(event)
     }
 
     return(
