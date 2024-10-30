@@ -51,7 +51,7 @@ const App = () => {
   return (
       <div>
           <h1>{welcome.greeting} {welcome.title}</h1>
-         <Search onSearch={handleSearch} />
+         <Search search={searchTerm} onSearch={handleSearch} />
           <hr/>
           <List list={searchedStories}/>
       </div>
@@ -64,7 +64,7 @@ const Search = (props) => {
     return(
         <div>
             <label htmlFor="search">Search: </label>
-            <input id="search" type="text" onInput={props.onSearch}/>
+            <input id="search" type="text" value={props.search} onInput={props.onSearch}/>
 
         </div>
     );
