@@ -17,6 +17,8 @@ function getTitle(title) {
 
 const App = () => {
 
+    const [searchTerm, setSearchTerm] = React.useState('User has not supplied a search term');
+
     const stories = [
         {
         title: 'React',
@@ -37,37 +39,33 @@ const App = () => {
     ]
 
     const handleSearch = (event) => {
-      console.log(event.target.value);
+      setSearchTerm(event.target.value);
     };
+
+    const searchedStories = stories.filter((story) => {
+       return (
+           story.title.toLowerCase().includes(searchTerm.toLowerCase())
+       )
+    });
 
   return (
       <div>
           <h1>{welcome.greeting} {welcome.title}</h1>
          <Search onSearch={handleSearch} />
           <hr/>
-          <List list={stories}/>
+          <List list={searchedStories}/>
       </div>
   );
 
 }
 
 const Search = (props) => {
-    const [searchTerm, setSearchTerm] = React.useState('User has not supplied a search term');
-
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
-
-        props.onSearch(event)
-    }
 
     return(
         <div>
             <label htmlFor="search">Search: </label>
-            <input id="search" type="text" onInput={handleChange}/>
+            <input id="search" type="text" onInput={props.onSearch}/>
 
-            <p>
-                Searching for <strong>{searchTerm}</strong>.
-            </p>
         </div>
     );
 }
