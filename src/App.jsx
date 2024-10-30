@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -51,18 +52,20 @@ const App = () => {
 }
 
 const Search = () => {
-    const handleChange = (event) => {
-        //synthetic event
-        console.log(event);
+    const [searchTerm, setSearchTerm] = React.useState('User has not supplied a search term');
 
-        //value of target
-        console.log(event.target.value);
+    const handleChange = (event) => {
+        setSearchTerm(event.target.value);
     }
 
     return(
         <div>
             <label htmlFor="search">Search: </label>
             <input id="search" type="text" onInput={handleChange}/>
+
+            <p>
+                Searching for <strong>{searchTerm}</strong>.
+            </p>
         </div>
     );
 }
